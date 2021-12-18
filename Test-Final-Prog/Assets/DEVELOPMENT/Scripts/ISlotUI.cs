@@ -2,24 +2,43 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ISlotUI : MonoBehaviour
+public class ISlotUI : MonoBehaviour, IDropHandler
 {
+    public ISlot slot = new ISlot(null,0);
+    public int index;
+
+    //public ISlot selectedSlot;
     public Text itemName;
     public Text itemDescription;
     public Text itemQuantity;
-    public Button slot;
+    public Image icon;
 
-    public RawImage icon;
-    public Slider itemDamage;
+    private IInventory inv;
+    private IInventoryUI invUI;
+    private void Start()
+    {
+        inv = FindObjectOfType<IInventory>();
+        invUI = FindObjectOfType<IInventoryUI>();
+    }
 
+    void IDropHandler.OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("Drop");
+        
+        if (slot.quantity == 0)
+        {
+            //mover de lugar el slot
+            inv.CambiarLugar(index);
 
-    public Transform defaultImagePos;
-    public Vector3 offset;
-    public Camera cam;
+        }
+        else if (slot.obj.name == inv.selectedSlot.obj.name && slot.obj.stackable > inv.selectedSlot.quantity + slot.quantity)
+        {
+            //agregar cantidad al slot y borrar el slot seleccionado
+        }
+    }
 
-    public bool siguiendoCam;
-    public bool Isfollowing = false;
 }
 

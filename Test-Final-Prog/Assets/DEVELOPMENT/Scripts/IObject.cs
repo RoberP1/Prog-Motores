@@ -18,7 +18,7 @@ public class IObject : MonoBehaviour
     private Transform mano;
 
     [Header("inventario")]
-    public Image inventoryimage;
+    public Image icon;
 
     [Header("Crafteo")]
     public bool iscrafteable = false;
@@ -32,11 +32,12 @@ public class IObject : MonoBehaviour
             mano.rotation = rotacionMano;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
 
         if(other.TryGetComponent<IInventory>(out IInventory inventario))
         {
+            print("test");
             //print(inventario.inventory[0].obj.name + " obj");
             if (inventario.Add(this))
             {
@@ -49,7 +50,7 @@ public class IObject : MonoBehaviour
             else print("toco pero no se agrego");
         }
 
-    }
+    }*/
 }
 
 
