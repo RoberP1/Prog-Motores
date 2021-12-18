@@ -28,7 +28,7 @@ public class IInventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             UIinv.SetActive(!UIinv.activeSelf);
-            //Time.timeScale = (UIinv.activeSelf) ? 0 : 1;
+            Time.timeScale = (UIinv.activeSelf) ? 0 : 1;
             Cursor.lockState =  (UIinv.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
@@ -75,6 +75,8 @@ public class IInventory : MonoBehaviour
             if (i != -1)
             {
                 inventory[i] = new ISlot(item, 1);
+                inventory[i].prefab = Instantiate(inventory[i].obj.prefab,transform.localPosition + new Vector3(2,1,0) , transform.rotation,transform);
+                inventory[i].prefab.SetActive(false);
                 agregado = true;
             }
         }
@@ -83,16 +85,6 @@ public class IInventory : MonoBehaviour
 
         return agregado;
     }
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent<IObject>(out IObject item))
-        {
-            if (Add(item))
-            {
-                Destroy(other.gameObject);
-            }
-        }
-    }*/
     public int BuscarSlot(ISlot slot)
     {
         for (int i = 0; i < inventory.Length; i++)
@@ -111,9 +103,17 @@ public class IInventory : MonoBehaviour
     }
     public void DropSelected()
     {
-        print(selectedSlot.obj.prefab);
         int i = BuscarSlot(selectedSlot);
+        for (int j = 0; j < selectedSlot.quantity; j++)
+        {
+            Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(0,j/2,0), selectedSlot.prefab.transform.rotation).SetActive(true);
+        }
+        //inventory[i].prefab.SetActive(true);
+        Destroy(inventory[i].prefab);
+        
+        //inventory[i].prefab.transform.SetParent(null);
         inventory[i] = new ISlot(null, 0);
-        Instantiate(selectedSlot.obj.prefab);
+        
+        invUI.UpdateInv();
     }
 }

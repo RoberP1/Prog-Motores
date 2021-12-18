@@ -39,9 +39,7 @@ public class IObject : MonoBehaviour
         {
             if (inventario.Add(this))
             {
-
                 Destroy(gameObject);
-
 
             }
             else print("toco pero no se agrego");
@@ -68,6 +66,8 @@ public class ISlot
 {
     public IObject obj { set; get; }
     public int quantity { set; get; }
+
+    public GameObject prefab;
 
     public ISlot(IObject item, int cantidad)
     {

@@ -27,6 +27,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        SelectedSlot = GetComponentInParent<ISlotUI>().slot;
         Debug.Log("OnBeginDrag");
         canvasGroup.blocksRaycasts = false;
         inv.selectedSlot = SelectedSlot;
