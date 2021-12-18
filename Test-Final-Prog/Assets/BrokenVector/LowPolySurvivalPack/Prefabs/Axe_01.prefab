@@ -144,6 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: axe
   description: 
+  prefab: {fileID: 165366}
   stackable: 1
   inMano: 0
   posicionMano: {x: 0, y: 0, z: 0}

@@ -7,7 +7,7 @@ public class IObject : MonoBehaviour
 {
     public new string name;
     public string description;
-    //public int quantity;
+    public GameObject prefab;
     public int stackable = 1;
 
     [Header("Posicion en la mano")]
@@ -32,25 +32,22 @@ public class IObject : MonoBehaviour
             mano.rotation = rotacionMano;
         }
     }
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
 
         if(other.TryGetComponent<IInventory>(out IInventory inventario))
         {
-            print("test");
-            //print(inventario.inventory[0].obj.name + " obj");
             if (inventario.Add(this))
             {
-                //print(inventario.inventory[0].obj.name + " obj2");
-                
+
                 Destroy(gameObject);
 
-                
+
             }
             else print("toco pero no se agrego");
         }
 
-    }*/
+    }
 }
 
 

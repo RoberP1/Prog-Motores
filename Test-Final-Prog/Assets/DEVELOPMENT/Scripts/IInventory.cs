@@ -83,7 +83,7 @@ public class IInventory : MonoBehaviour
 
         return agregado;
     }
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<IObject>(out IObject item))
         {
@@ -92,7 +92,7 @@ public class IInventory : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
-    }
+    }*/
     public int BuscarSlot(ISlot slot)
     {
         for (int i = 0; i < inventory.Length; i++)
@@ -108,5 +108,12 @@ public class IInventory : MonoBehaviour
         inventory[dest] = inventory[i];
         inventory[i] = new ISlot(null, 0);
         invUI.UpdateInv();
+    }
+    public void DropSelected()
+    {
+        print(selectedSlot.obj.prefab);
+        int i = BuscarSlot(selectedSlot);
+        inventory[i] = new ISlot(null, 0);
+        Instantiate(selectedSlot.obj.prefab);
     }
 }

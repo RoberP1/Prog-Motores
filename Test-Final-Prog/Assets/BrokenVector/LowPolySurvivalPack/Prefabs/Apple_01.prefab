@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: manzana
   description: 
+  prefab: {fileID: 159866}
   stackable: 10
   inMano: 0
   posicionMano: {x: 0, y: 0, z: 0}
