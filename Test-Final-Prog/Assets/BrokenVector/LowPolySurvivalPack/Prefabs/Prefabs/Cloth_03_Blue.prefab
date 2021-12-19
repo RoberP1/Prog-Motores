@@ -147,8 +147,8 @@ MonoBehaviour:
   prefab: {fileID: 172742}
   stackable: 10
   inMano: 0
-  posicionMano: {x: 0, y: 0, z: 0}
-  rotacionMano: {x: 0, y: 0, z: 0, w: 0}
+  posicionMano: {x: 0.033, y: -0.124, z: -0.004}
+  rotacionMano: {x: 0.5755435, y: 0.35325336, z: 0.26355124, w: 0.68884146}
   IsArma: 0
   icon: {fileID: 2135634977891430252}
   iscrafteable: 0
