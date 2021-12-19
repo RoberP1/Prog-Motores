@@ -15,7 +15,7 @@ public class IObject : MonoBehaviour
     public bool inMano = false;
     public Vector3 posicionMano;
     public Quaternion rotacionMano;
-    private Transform mano;
+
 
     [Tooltip("Es un arma o no")]
     public bool IsArma = false;
@@ -27,18 +27,11 @@ public class IObject : MonoBehaviour
     public bool iscrafteable = false;
     public List<IQuerry> crafteo;
 
-    private void Start()
-    {
-        if (inMano)
-        {
-            mano.position = posicionMano;
-            mano.rotation = rotacionMano;
-        }
-    }
+
     private void OnTriggerEnter(Collider other)
     {
 
-        if(other.TryGetComponent<IInventory>(out IInventory inventario))
+        if(!inMano && other.TryGetComponent<IInventory>(out IInventory inventario))
         {
             if (inventario.Add(this))  Destroy(gameObject);
             else print("toco pero no se agrego");

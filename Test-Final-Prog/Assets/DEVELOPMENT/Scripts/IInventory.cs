@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using StarterAssets;
 
 public class IInventory : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class IInventory : MonoBehaviour
     public ISlot selectedSlot;
 
     [SerializeField]private Transform mano;
+    private GameObject ObjInMano;
     private IInventoryUI invUI;
     void Start()
     {
@@ -36,27 +38,54 @@ public class IInventory : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                //checkear si tiene objeto hotbar 1
-                    //si tiene ponerlo en la mano
-                    //checkear si es  un arma
-                        //si es arma cambiar modo de ataque
+                PonerEnMano(0);
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-
+                PonerEnMano(1);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-
+                PonerEnMano(2);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-
+                PonerEnMano(3);
             }
             if (Input.GetKeyDown(KeyCode.Alpha5))
             {
-
+                PonerEnMano(4);
             }
+        }
+    }
+
+    private void PonerEnMano(int i)
+    {
+        if (hotbar[i].quantity != 0)
+        {
+            //si tiene ponerlo en la mano
+            ObjInMano?.SetActive(false);
+            ObjInMano = hotbar[i].prefab;
+            ObjInMano.transform.localPosition = hotbar[i].obj.posicionMano;
+            ObjInMano.transform.localRotation = hotbar[i].obj.rotacionMano;
+            ObjInMano.GetComponent<IObject>().inMano = true;
+            ObjInMano.SetActive(true);
+            ObjInMano.GetComponent<Rigidbody>().isKinematic = true;
+            if(ObjInMano.TryGetComponent<BoxCollider>(out BoxCollider col))  col.enabled = false;
+
+            //checkear si es  un arma
+            if (hotbar[i].obj.IsArma)
+            {
+                //si es arma cambiar modo de ataque
+                GetComponent<ThirdPersonController>().ArmaEnMano = true;
+
+            } else GetComponent<ThirdPersonController>().ArmaEnMano = false;
+
+        }
+        else
+        {
+            ObjInMano?.SetActive(false);
+            GetComponent<ThirdPersonController>().ArmaEnMano = false;
         }
     }
 
@@ -102,7 +131,7 @@ public class IInventory : MonoBehaviour
             if (i != -1)
             {
                 inventory[i] = new ISlot(item, 1);
-                inventory[i].prefab = Instantiate(inventory[i].obj.prefab,transform.localPosition + new Vector3(2,1,0) , transform.rotation,transform);
+                inventory[i].prefab = Instantiate(inventory[i].obj.prefab,mano.position, mano.rotation,mano);
                 inventory[i].prefab.SetActive(false);
                 agregado = true;
             }

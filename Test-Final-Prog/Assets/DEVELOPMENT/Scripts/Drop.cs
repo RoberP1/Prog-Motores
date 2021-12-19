@@ -6,13 +6,8 @@ using UnityEngine.EventSystems;
 public class Drop : MonoBehaviour, IDropHandler
 {
     private IInventory inventory;
-    private void Start()
-    {
-        inventory = FindObjectOfType<IInventory>();
-    }
-    public void OnDrop(PointerEventData eventData)
-    {
-        inventory.DropSelected();
-    }
+    private void Start() => inventory = FindObjectOfType<IInventory>();
+   
+    public void OnDrop(PointerEventData eventData) => inventory.DropSelected();
 
 }
