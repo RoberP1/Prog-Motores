@@ -23,11 +23,6 @@ public class IInventoryUI : MonoBehaviour
         }
     }
 
-
-    void Update()
-    {
-
-    }
     public void UpdateInv()
     {
         for (int i = 0; i < inv.Length; i++)
@@ -64,11 +59,6 @@ public class IInventoryUI : MonoBehaviour
                     hotbar[i].GetComponent<CanvasGroup>().alpha = 0.8f;
                 }
             }
-            
         }
-    }
-    public void UpdateHotbar()
-    {
-
     }
 }

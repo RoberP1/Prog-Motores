@@ -29,11 +29,8 @@ public class ISlotUI : MonoBehaviour, IDropHandler
         Debug.Log("Drop");
         
         if (slot.quantity == 0 || slot.obj.name != inv.selectedSlot.obj.name)
-        {
-            //mover de lugar el slot
             inv.CambiarLugar(index);
 
-        }
         else if (slot.obj.name == inv.selectedSlot.obj.name && slot.obj.stackable > inv.selectedSlot.quantity + slot.quantity)
         {
             //agregar cantidad al slot y borrar el slot seleccionado

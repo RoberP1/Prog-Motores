@@ -36,26 +36,16 @@ public class IInventory : MonoBehaviour
         }
         if (!UIinv.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                PonerEnMano(0);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                PonerEnMano(1);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                PonerEnMano(2);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                PonerEnMano(3);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                PonerEnMano(4);
-            }
+            if (Input.GetKeyDown(KeyCode.Alpha1)) PonerEnMano(0);
+
+            if (Input.GetKeyDown(KeyCode.Alpha2)) PonerEnMano(1);
+
+            if (Input.GetKeyDown(KeyCode.Alpha3)) PonerEnMano(2);
+
+            if (Input.GetKeyDown(KeyCode.Alpha4)) PonerEnMano(3);
+
+            if (Input.GetKeyDown(KeyCode.Alpha5)) PonerEnMano(4);
+
         }
     }
 
@@ -92,17 +82,12 @@ public class IInventory : MonoBehaviour
     //los primeros 5 slots del inventario son de la hotbar
     void UpdateHotbar()
     {
-        for (int i = 0; i < hotbar.Length; i++)
-        {
-            hotbar[i] = inventory[i];
-            
-            //Debug.Log("pos: " +i +" nombre: "+inventory[i].obj.name + " cantidad: " + inventory[i].quantity);
-        }
+        for (int i = 0; i < hotbar.Length; i++)  hotbar[i] = inventory[i];
+        
     }
 
     int BuscarVacio() //busca el primer slot vacio, si no encuentra devuelve -1
     {
-        
         for (int i = 0; i < inventory.Length; i++)
         {
             if (inventory[i].quantity == 0) return i;
@@ -112,9 +97,8 @@ public class IInventory : MonoBehaviour
     }
     public bool Add(IObject item)
     {
-      
         bool agregado = false;
-      
+
         foreach (ISlot s in inventory)
         {
             if (s.quantity != 0 && s.obj.name == item.name && item.stackable > s.quantity)
@@ -166,10 +150,7 @@ public class IInventory : MonoBehaviour
         {
             Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(0,j/2,0), selectedSlot.prefab.transform.rotation).SetActive(true);
         }
-        //inventory[i].prefab.SetActive(true);
         Destroy(inventory[i].prefab);
-        
-        //inventory[i].prefab.transform.SetParent(null);
         inventory[i] = new ISlot(null, 0);
         UpdateHotbar();
         invUI.UpdateInv();

@@ -24,8 +24,7 @@ public class Recurso : MonoBehaviour
         Vida -= damage;
         if (Vida <= 0) 
         {
-           
-            
+  
             Destroy(yo);
         }
 
@@ -33,7 +32,7 @@ public class Recurso : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("golpemano"))
+        if (other.CompareTag("golpemano"))//cambiar a trytogetcomponent<Iobject>(out Iobject arma) y si arma.isarma
         {
             
             RecibirDamage(50);
