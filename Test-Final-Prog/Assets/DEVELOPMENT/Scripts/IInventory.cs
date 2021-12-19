@@ -11,6 +11,7 @@ public class IInventory : MonoBehaviour
     public GameObject UIinv;
     public ISlot selectedSlot;
 
+    [SerializeField]private Transform mano;
     private IInventoryUI invUI;
     void Start()
     {
@@ -30,6 +31,32 @@ public class IInventory : MonoBehaviour
             UIinv.SetActive(!UIinv.activeSelf);
             Time.timeScale = (UIinv.activeSelf) ? 0 : 1;
             Cursor.lockState =  (UIinv.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
+        }
+        if (!UIinv.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                //checkear si tiene objeto hotbar 1
+                    //si tiene ponerlo en la mano
+                    //checkear si es  un arma
+                        //si es arma cambiar modo de ataque
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+
+            }
         }
     }
 
@@ -96,9 +123,11 @@ public class IInventory : MonoBehaviour
     } 
     public void CambiarLugar( int dest)
     {
+        ISlot tempslot = (inventory[dest].quantity == 0) ? new ISlot(null, 0) : inventory[dest];
         int i = BuscarSlot(selectedSlot);
         inventory[dest] = inventory[i];
-        inventory[i] = new ISlot(null, 0);
+        inventory[i] = tempslot;
+        UpdateHotbar();
         invUI.UpdateInv();
     }
     public void DropSelected()
@@ -113,7 +142,7 @@ public class IInventory : MonoBehaviour
         
         //inventory[i].prefab.transform.SetParent(null);
         inventory[i] = new ISlot(null, 0);
-        
+        UpdateHotbar();
         invUI.UpdateInv();
     }
 }

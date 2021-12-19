@@ -17,6 +17,9 @@ public class IObject : MonoBehaviour
     public Quaternion rotacionMano;
     private Transform mano;
 
+    [Tooltip("Es un arma o no")]
+    public bool IsArma = false;
+
     [Header("inventario")]
     public Image icon;
 
@@ -37,11 +40,7 @@ public class IObject : MonoBehaviour
 
         if(other.TryGetComponent<IInventory>(out IInventory inventario))
         {
-            if (inventario.Add(this))
-            {
-                Destroy(gameObject);
-
-            }
+            if (inventario.Add(this))  Destroy(gameObject);
             else print("toco pero no se agrego");
         }
 

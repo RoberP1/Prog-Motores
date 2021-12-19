@@ -28,7 +28,7 @@ public class ISlotUI : MonoBehaviour, IDropHandler
     {
         Debug.Log("Drop");
         
-        if (slot.quantity == 0)
+        if (slot.quantity == 0 || slot.obj.name != inv.selectedSlot.obj.name)
         {
             //mover de lugar el slot
             inv.CambiarLugar(index);
