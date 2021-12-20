@@ -14,7 +14,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
     
 
 
-    private void Awake()
+    private void Start()
     {
         canvas = GameObject.FindGameObjectWithTag("mainCanvas").GetComponent<Canvas>();
         inv = FindObjectOfType<IInventory>();
@@ -28,7 +28,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
         SelectedSlot = GetComponentInParent<ISlotUI>().slot;
         canvasGroup.blocksRaycasts = false;
         inv.selectedSlot = SelectedSlot;
-        print(SelectedSlot.obj.name);
     }
 
     public void OnDrag(PointerEventData eventData)

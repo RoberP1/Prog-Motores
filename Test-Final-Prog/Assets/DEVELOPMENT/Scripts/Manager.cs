@@ -19,6 +19,8 @@ public class Manager : MonoBehaviour
         win.SetActive(false);
         lose.SetActive(false);
         pause.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
 

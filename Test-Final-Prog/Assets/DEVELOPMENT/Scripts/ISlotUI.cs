@@ -14,14 +14,14 @@ public class ISlotUI : MonoBehaviour, IDropHandler
     public Text itemQuantity;
     public Image icon;
 
-    public ISlot slot;
+    public ISlot slot = new ISlot(null, 0);
     public int index;
 
     private IInventory inv;
 
     private void Start()
     {
-        slot = new ISlot(null, 0);
+
         inv = FindObjectOfType<IInventory>();
     }
 
