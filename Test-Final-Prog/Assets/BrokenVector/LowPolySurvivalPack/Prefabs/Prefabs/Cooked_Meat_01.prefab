@@ -120,9 +120,11 @@ MonoBehaviour:
   posicionMano: {x: -0.039, y: -0.127, z: -0.078}
   rotacionMano: {x: -0.6850307, y: -0.39959076, z: -0.58946973, w: 0.15357578}
   IsArma: 0
+  AttackArea: {fileID: 0}
   icon: {fileID: 4029035507099466401}
   iscrafteable: 0
   crafteo: []
+  uso: meat
 --- !u!65 &6050036850293966080
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -2,42 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vida : MonoBehaviour
+public class Recurso : MonoBehaviour
 {
-    private GameObject yo; 
-    public float health;
+    public GameObject recurso;
+    public float Vida;
+    public int randomLootmin;
+    public int randomLootmax;
 
-    void Start()
-    {
-        yo = gameObject;
-    }
-
- 
-    void Update()
-    {
-
-    }
     public void RecibirDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0) 
+        Vida -= damage;
+        if (Vida <= 0)
         {
-            Destroy(yo);
+            Destroy(gameObject);
+            for (int i = 0; i < Random.Range(randomLootmin, randomLootmax); i++)
+            {
+                Instantiate(recurso, transform.position + new Vector3(Random.Range(-4, 4), 5, Random.Range(-4, 4)), transform.rotation);
+            }
         }
-
-        
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("golpemano"))
-        {
-            
-            RecibirDamage(50);
-        }
-        if(other.CompareTag("golpearma"))
+        //print("trigger");
+        //print(other.gameObject.name);
+        if (other.gameObject.name == "AttackArea" )//cambiar a trytogetcomponent<Iobject>(out Iobject arma) y si arma.isarma
         {
             print("pego");
-            RecibirDamage(100);
+            RecibirDamage(50);
         }
     }
 }

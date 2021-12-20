@@ -28,12 +28,11 @@ public class TickManager : MonoBehaviour
     {
         TickTimerMax = 1 / TicksPerSec;
         tickTimer += Time.deltaTime;
-        if (tickTimer >= TickTimerMax)
+        if (tickTimer >= TickTimerMax && Time.timeScale !=0)
         {
             tickTimer -= TickTimerMax;
             tick++;
             if (OnTick != null) OnTick(this, new OnTickEventArgs { tick = tick });
         }
-        //Debug.Log("Tick = " + tick);
     }
 }

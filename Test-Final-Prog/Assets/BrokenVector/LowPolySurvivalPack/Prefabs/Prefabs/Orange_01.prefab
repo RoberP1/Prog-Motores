@@ -149,9 +149,11 @@ MonoBehaviour:
   posicionMano: {x: 0.019, y: -0.094, z: 0.035}
   rotacionMano: {x: 0, y: 0, z: 0, w: 0}
   IsArma: 0
+  AttackArea: {fileID: 0}
   icon: {fileID: 3412943126101591814}
   iscrafteable: 0
   crafteo: []
+  uso: naranja
 --- !u!1 &3110545469033346235
 GameObject:
   m_ObjectHideFlags: 0

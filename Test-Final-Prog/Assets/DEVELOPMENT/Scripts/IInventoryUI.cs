@@ -9,7 +9,7 @@ public class IInventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private ISlotUI[] inv = new ISlotUI[15];
-    [SerializeField] private ISlotUI[] hotbar = new ISlotUI[5];
+    [SerializeField] public ISlotUI[] hotbar = new ISlotUI[5];
 
     
 
@@ -42,7 +42,7 @@ public class IInventoryUI : MonoBehaviour
                     hotbar[i].itemQuantity.text = "x" + inventory.hotbar[i].quantity;
                     hotbar[i].icon.gameObject.SetActive(true);
                     hotbar[i].itemQuantity.gameObject.SetActive(true);
-                    hotbar[i].GetComponent<CanvasGroup>().alpha = 1;
+                    //hotbar[i].GetComponent<CanvasGroup>().alpha = 1;
                 }
 
             }
@@ -56,7 +56,7 @@ public class IInventoryUI : MonoBehaviour
                     hotbar[i].slot = new ISlot(null, 0);
                     hotbar[i].icon.gameObject.SetActive(false);
                     hotbar[i].itemQuantity.gameObject.SetActive(false);
-                    hotbar[i].GetComponent<CanvasGroup>().alpha = 0.8f;
+                    //hotbar[i].GetComponent<CanvasGroup>().alpha = 0.8f;
                 }
             }
         }

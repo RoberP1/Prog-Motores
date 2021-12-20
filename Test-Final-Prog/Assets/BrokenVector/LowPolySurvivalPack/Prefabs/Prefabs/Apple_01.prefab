@@ -120,9 +120,11 @@ MonoBehaviour:
   posicionMano: {x: 0.008, y: -0.126, z: 0.009}
   rotacionMano: {x: 0, y: 0, z: 0, w: 0}
   IsArma: 0
+  AttackArea: {fileID: 0}
   icon: {fileID: 2528201499181056909}
   iscrafteable: 0
   crafteo: []
+  uso: manzana
 --- !u!135 &-516512149655893105
 SphereCollider:
   m_ObjectHideFlags: 0

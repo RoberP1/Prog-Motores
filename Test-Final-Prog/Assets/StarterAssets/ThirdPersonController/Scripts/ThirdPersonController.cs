@@ -60,8 +60,11 @@ namespace StarterAssets
 		[Tooltip("For locking the camera position on all axis")]
 		public bool LockCameraPosition = false;
 
+		[Header("attack")]
 		public bool IsAttacking = false;
-		
+		public BoxCollider ManoCollider;
+		public BoxCollider ArmaCollider;
+
 		// cinemachine
 		private float _cinemachineTargetYaw;
 		private float _cinemachineTargetPitch;
@@ -119,6 +122,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+			ManoCollider.enabled = false;
 		}
 
 		private void Update()
@@ -133,7 +138,7 @@ namespace StarterAssets
 				Move();
 			}
 			
-            if (Input.GetMouseButtonDown(0) && !IsAttacking && Grounded && !ArmaEnMano)
+            if (Input.GetMouseButtonDown(0) &&Time.timeScale !=0 && !IsAttacking && Grounded && !ArmaEnMano)
             {
                 _animator.SetBool(_animIDAttack, true);
                 IsAttacking = true;
@@ -142,7 +147,7 @@ namespace StarterAssets
             }
             if (IsAttacking )
             {
-				Attackrotation();
+				//Attackrotation();
 			}
 			if (Input.GetMouseButtonDown(0) && !IsAttacking && Grounded && ArmaEnMano)
 			{
@@ -377,6 +382,8 @@ namespace StarterAssets
 		public void AttackFinish()
         {
 			IsAttacking = false;
+			ManoCollider.enabled = false;
+			if (ArmaCollider != null) ArmaCollider.enabled = false;
 			_animator.SetBool(_animIDAttack, false); 
 			_animator.SetBool(_animIDAttackArma, false); 
 
@@ -386,6 +393,7 @@ namespace StarterAssets
 			//print("hola");
 			IsAttacking = true;
 			stop = false;
+			
 			_animator.SetBool(_animIDAttack, false);
 			_animator.SetBool(_animIDAttackArma, false);
 
@@ -396,7 +404,18 @@ namespace StarterAssets
         }
 		public void stoprotation()
         {
+			
 			stop = true;
         }
+		public void activarcollider()
+        {
+			if (!ArmaEnMano) ManoCollider.enabled = true;
+			else ArmaCollider.enabled = true;
+		}
+		public void desactivarcollider()
+		{
+			ManoCollider.enabled = false;
+			if (ArmaCollider != null) ArmaCollider.enabled = false;
+		}
 	}
 }

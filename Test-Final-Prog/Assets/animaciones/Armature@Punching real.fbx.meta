@@ -93,7 +93,7 @@ ModelImporter:
       firstFrame: 0
       lastFrame: 26
       wrapMode: 0
-      orientationOffsetY: 0
+      orientationOffsetY: -45
       level: 0
       cycleOffset: 0
       loop: 0
@@ -118,8 +118,22 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.034810126
+        functionName: activarcollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.43414634
         functionName: stoprotation
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.52639157
+        functionName: desactivarcollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

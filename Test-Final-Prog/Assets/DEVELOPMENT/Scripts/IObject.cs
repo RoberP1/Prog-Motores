@@ -19,6 +19,7 @@ public class IObject : MonoBehaviour
 
     [Tooltip("Es un arma o no")]
     public bool IsArma = false;
+    public BoxCollider AttackArea;
 
     [Header("inventario")]
     public Image icon;
@@ -27,6 +28,7 @@ public class IObject : MonoBehaviour
     public bool iscrafteable = false;
     public List<IQuerry> crafteo;
 
+    public string uso;
 
     private void OnTriggerEnter(Collider other)
     {

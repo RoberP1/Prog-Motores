@@ -11,10 +11,13 @@ public class IInventory : MonoBehaviour
 
     public GameObject UIinv;
     public ISlot selectedSlot;
+    public int slotinmano;
 
     [SerializeField]private Transform mano;
     private GameObject ObjInMano;
     private IInventoryUI invUI;
+    private IStatus status;
+    private Manager manager;
     void Start()
     {
         for (int i = 0; i < 15; i++)
@@ -23,12 +26,14 @@ public class IInventory : MonoBehaviour
         }
         UIinv.SetActive(false);
         invUI = FindObjectOfType<IInventoryUI>();
+        status = GetComponent<IStatus>();
+        manager = FindObjectOfType<Manager>();
     }
 
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && !manager.menu.activeSelf)
         {
             UIinv.SetActive(!UIinv.activeSelf);
             Time.timeScale = (UIinv.activeSelf) ? 0 : 1;
@@ -46,6 +51,10 @@ public class IInventory : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Alpha5)) PonerEnMano(4);
 
+            if (Input.GetMouseButtonDown(1) && ObjInMano != null &&ObjInMano.activeSelf && ObjInMano.GetComponent<IObject>().uso != null)
+            {
+                Usos(ObjInMano.GetComponent<IObject>().uso);
+            }
         }
     }
 
@@ -56,6 +65,9 @@ public class IInventory : MonoBehaviour
             //si tiene ponerlo en la mano
             ObjInMano?.SetActive(false);
             ObjInMano = hotbar[i].prefab;
+            invUI.hotbar[slotinmano].GetComponent<CanvasGroup>().alpha = 0.8f;
+            slotinmano = i;
+            invUI.hotbar[i].GetComponent<CanvasGroup>().alpha = 1;
             ObjInMano.transform.localPosition = hotbar[i].obj.posicionMano;
             ObjInMano.transform.localRotation = hotbar[i].obj.rotacionMano;
             ObjInMano.GetComponent<IObject>().inMano = true;
@@ -68,6 +80,7 @@ public class IInventory : MonoBehaviour
             {
                 //si es arma cambiar modo de ataque
                 GetComponent<ThirdPersonController>().ArmaEnMano = true;
+                GetComponent<ThirdPersonController>().ArmaCollider = ObjInMano.GetComponent<IObject>().AttackArea;
 
             } else GetComponent<ThirdPersonController>().ArmaEnMano = false;
 
@@ -76,6 +89,9 @@ public class IInventory : MonoBehaviour
         {
             ObjInMano?.SetActive(false);
             GetComponent<ThirdPersonController>().ArmaEnMano = false;
+            invUI.hotbar[slotinmano].GetComponent<CanvasGroup>().alpha = 0.8f;
+            slotinmano = i;
+            invUI.hotbar[i].GetComponent<CanvasGroup>().alpha = 1;
         }
     }
 
@@ -83,6 +99,7 @@ public class IInventory : MonoBehaviour
     void UpdateHotbar()
     {
         for (int i = 0; i < hotbar.Length; i++)  hotbar[i] = inventory[i];
+        PonerEnMano(slotinmano);
         
     }
 
@@ -148,11 +165,57 @@ public class IInventory : MonoBehaviour
         int i = BuscarSlot(selectedSlot);
         for (int j = 0; j < selectedSlot.quantity; j++)
         {
-            Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(0,j/2,0), selectedSlot.prefab.transform.rotation).SetActive(true);
+            Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(2,j/2,0), selectedSlot.prefab.transform.rotation).SetActive(true);
         }
         Destroy(inventory[i].prefab);
         inventory[i] = new ISlot(null, 0);
         UpdateHotbar();
         invUI.UpdateInv();
     }
+    public void sacaruno(int i) 
+    { 
+        inventory[i].quantity--;
+        UpdateHotbar();
+        invUI.UpdateInv();
+    }
+
+    public void Usos(string uso)
+    {
+        switch (uso)
+        {
+            case "naranja":
+                sacaruno(slotinmano);
+                status.Comer(20);
+                status.Beber(10);
+                break;
+            case "manzana":
+                sacaruno(slotinmano);
+                status.Comer(20);
+                status.Beber(10);
+                break;
+            case "pan":
+                sacaruno(slotinmano);
+                status.Comer(30);
+                break;
+            case "primerosauxilios":
+                sacaruno(slotinmano);
+                status.Curar(100);
+                break;
+            case "meat":
+                sacaruno(slotinmano);
+                status.Comer(50);
+                break;
+            case "cantimplora":
+                sacaruno(slotinmano);
+                status.Beber(100);
+                break;
+            case "botella":
+                sacaruno(slotinmano);
+                status.Beber(40);
+                break;
+            default:
+                break;
+        }
+    }
+
 }

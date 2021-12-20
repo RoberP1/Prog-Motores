@@ -7,10 +7,7 @@ public class DayNight : MonoBehaviour
 {
     private bool day = true;
     public int dayDuration;
-
     public Material daymat;
-    
-    
     public Material nightmat;
     
     void Start()
@@ -21,7 +18,7 @@ public class DayNight : MonoBehaviour
     
     private void DayTick(object sender, TickManager.OnTickEventArgs e)
     {
-        transform.rotation = Quaternion.Euler((e.tick / (dayDuration / 180)), 0, 0);
+        transform.rotation = Quaternion.Euler(e.tick / (dayDuration / 180), 0, 0);
         if (e.tick % dayDuration == 0) ChangeSkybox(); 
     }
 
