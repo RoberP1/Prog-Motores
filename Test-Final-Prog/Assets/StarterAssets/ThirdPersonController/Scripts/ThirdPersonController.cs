@@ -151,7 +151,7 @@ namespace StarterAssets
             }
             if (IsAttacking )
             {
-				//Attackrotation();
+				Attackrotation();
 			}
 			if (Input.GetMouseButtonDown(0) && !IsAttacking && Grounded && ArmaEnMano)
 			{
@@ -162,12 +162,12 @@ namespace StarterAssets
 
         private void Attackrotation()
         {
-			//StartCoroutine(DelayGirar(01f));
+			StartCoroutine(DelayGirar(01f));
 			if (!stop)
             {
 				
 				//print("hola");
-				_targetRotation = _mainCamera.transform.eulerAngles.y +20f;
+				_targetRotation = _mainCamera.transform.eulerAngles.y;
 				float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime /2);
 
 				// rotate to face input direction relative to camera position
@@ -389,7 +389,7 @@ namespace StarterAssets
 			ManoCollider.enabled = false;
 			if (ArmaCollider != null) ArmaCollider.enabled = false;
 			_animator.SetBool(_animIDAttack, false); 
-			_animator.SetBool(_animIDAttackArma, false); 
+			_animator.SetBool(_animIDAttackArma, false);
 
 		}
 		public void AttackStart()

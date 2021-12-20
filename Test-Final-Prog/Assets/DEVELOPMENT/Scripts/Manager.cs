@@ -35,17 +35,17 @@ public class Manager : MonoBehaviour
     public void Perder()
     {
         Debug.Log("perdiste");
-        Time.timeScale = (menu.activeSelf) ? 0 : 1;
         menu.SetActive(true);
         lose.SetActive(true);
+        Time.timeScale = (menu.activeSelf) ? 0 : 1;
         Cursor.lockState = (menu.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
     }
     public void Ganar()
     {
         Debug.Log("ganaste");
-        Time.timeScale = (menu.activeSelf) ? 0 : 1;
         menu.SetActive(true);
         win.SetActive(true);
+        Time.timeScale = (menu.activeSelf) ? 0 : 1;
         Cursor.lockState = (menu.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
     }
     public void EncontrarCol()

@@ -9099,9 +9099,9 @@ MonoBehaviour:
   Vida: {fileID: 1094107742}
   Hambre: {fileID: 881764556}
   Sed: {fileID: 790181491}
-  health: 50
-  hunger: 0
-  thirst: 30
+  health: 100
+  hunger: 100
+  thirst: 100
   healthTick: 500
   hungerTick: 5000
   thirstTick: 5000
@@ -20355,7 +20355,7 @@ Transform:
   - {fileID: 65911102}
   - {fileID: 1401896928}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1776294400
 PrefabInstance:
@@ -21190,19 +21190,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7325184210926874094, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_Size.x
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874094, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_Size.y
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874094, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_Size.z
-      value: 0.3
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874096, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_Name
       value: AttackArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325184210926874096, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
+      propertyPath: m_TagString
+      value: golpemano
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874097, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_RootOrder
@@ -21210,15 +21214,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874097, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.013
+      value: 0.045
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874097, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.173
+      value: -0.139
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874097, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.128
+      value: -0.068
       objectReference: {fileID: 0}
     - target: {fileID: 7325184210926874097, guid: 4aac587c93bef9d4ba0eb2c73920ad56, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23923,7 +23927,7 @@ PrefabInstance:
       objectReference: {fileID: 1839841879}
     - target: {fileID: 5225331561568584894, guid: 208e2ff15a662ed4da1d0164fd11cd2d, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5225331561568584894, guid: 208e2ff15a662ed4da1d0164fd11cd2d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -14,8 +14,11 @@ public class Enemy : MonoBehaviour
     private IStatus player;
     private bool alive = true;
     public bool CanMakeDamage;
+
     [SerializeField] private Slider Vida;
     [SerializeField] private float distancia;
+
+    
 
     void Start()
     {
@@ -25,6 +28,7 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<IStatus>();
         target = player.transform;
         CanMakeDamage = true;
+
     }
 
     // Update is called once per frame
@@ -32,8 +36,6 @@ public class Enemy : MonoBehaviour
     {
         if (alive && Vector3.Distance(transform.position, target.position) < distancia) agent.SetDestination(target.position);
         else agent.SetDestination(transform.position);
-
-            
 
         if (Vector3.Distance(transform.position, target.position) <= 2.1f && CanMakeDamage && alive) //esto se hace mas eficiente con un trigger
         {
@@ -61,11 +63,14 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.name == "AttackArea")//cambiar a trytogetcomponent<Iobject>(out Iobject arma) y si arma.isarma
+        IObject obj = other.GetComponentInParent<IObject>();
+        if (other.CompareTag("golpemano"))
         {
-            print("pego");
-            Damage(50);
+            Damage(20);
+        } else if (obj != null && obj.inMano)
+        {
+            Damage(obj.damage);
         }
     }
+
 }

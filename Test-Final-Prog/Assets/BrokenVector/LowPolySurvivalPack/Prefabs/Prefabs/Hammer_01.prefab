@@ -152,9 +152,11 @@ MonoBehaviour:
   rotacionMano: {x: -0.04662818, y: 0.13112828, z: -0.6999002, w: 0.70055044}
   IsArma: 1
   AttackArea: {fileID: 1352290695269208881}
+  damage: 40
   icon: {fileID: 3249045759369256616}
   iscrafteable: 0
   crafteo: []
+  uso: 
 --- !u!1 &2420621198091040865
 GameObject:
   m_ObjectHideFlags: 0

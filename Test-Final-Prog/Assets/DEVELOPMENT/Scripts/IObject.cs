@@ -20,6 +20,7 @@ public class IObject : MonoBehaviour
     [Tooltip("Es un arma o no")]
     public bool IsArma = false;
     public BoxCollider AttackArea;
+    public float damage;
 
     [Header("inventario")]
     public Image icon;

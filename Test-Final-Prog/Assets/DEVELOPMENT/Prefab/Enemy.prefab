@@ -179,7 +179,7 @@ BoxCollider:
   m_GameObject: {fileID: 2399531954078300126}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -275,7 +275,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3070285489584596029}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -371,7 +371,7 @@ BoxCollider:
   m_GameObject: {fileID: 3427867201620276046}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -451,6 +451,8 @@ GameObject:
   - component: {fileID: 5508979909989239898}
   - component: {fileID: 3246496732305203514}
   - component: {fileID: 3030266664562543038}
+  - component: {fileID: 3553977102072184583}
+  - component: {fileID: 5448530530272096258}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -525,8 +527,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5e1e4e0ed79d843a936c65cc5376c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanMakeDamage: 0
   Vida: {fileID: 4744438704571796456}
   distancia: 25
+--- !u!136 &3553977102072184583
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5415968604307026833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 2
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &5448530530272096258
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5415968604307026833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2.9
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &5642846066605152649
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +651,7 @@ SphereCollider:
   m_GameObject: {fileID: 5642846066605152649}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -715,7 +746,7 @@ BoxCollider:
   m_GameObject: {fileID: 5743622609723525533}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -985,7 +1016,7 @@ BoxCollider:
   m_GameObject: {fileID: 7391789355299022138}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1116,7 +1147,7 @@ BoxCollider:
   m_GameObject: {fileID: 9106187029955879454}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

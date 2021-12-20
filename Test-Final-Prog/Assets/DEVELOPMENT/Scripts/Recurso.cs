@@ -23,10 +23,14 @@ public class Recurso : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "AttackArea" )//cambiar a trytogetcomponent<Iobject>(out Iobject arma) y si arma.isarma
+        IObject obj = other.GetComponentInParent<IObject>();
+        if (other.CompareTag("golpemano"))
         {
-            print("pego");
-            RecibirDamage(50);
+            RecibirDamage(20);
+        }
+        else if (obj != null && obj.inMano)
+        {
+            RecibirDamage(obj.damage);
         }
     }
 }
