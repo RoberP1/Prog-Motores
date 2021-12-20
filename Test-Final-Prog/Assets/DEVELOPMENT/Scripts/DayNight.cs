@@ -6,19 +6,23 @@ using UnityEngine;
 public class DayNight : MonoBehaviour
 {
     private bool day = true;
+    public GameObject yo;
     public int dayDuration;
     public Material daymat;
     public Material nightmat;
+
     
-    void Start()
+    void Awake()
     {
+        yo = FindObjectOfType<DayNight>().gameObject;
         TickManager.OnTick += DayTick;
     }
 
     
     private void DayTick(object sender, TickManager.OnTickEventArgs e)
     {
-        transform.rotation = Quaternion.Euler(e.tick / (dayDuration / 180), 0, 0);
+        if(yo == null) yo = FindObjectOfType<DayNight>().gameObject; //si esto no esta al reiniciar la escena se pierde
+        yo.transform.rotation = Quaternion.Euler(e.tick / (dayDuration / 180), 0, 0);
         if (e.tick % dayDuration == 0) ChangeSkybox(); 
     }
 

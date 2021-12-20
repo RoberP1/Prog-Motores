@@ -5,16 +5,9 @@ using UnityEngine;
 public class Collecionables : MonoBehaviour
 {
     private Manager manager;
-    void Start()
-    {
-        manager = FindObjectOfType<Manager>();
-    }
+    void Start() => manager = FindObjectOfType<Manager>();
 
 
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

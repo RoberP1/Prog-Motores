@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class ISlotUI : MonoBehaviour, IDropHandler
 {
-    public ISlot slot = new ISlot(null,0);
-    public int index;
 
     //public ISlot selectedSlot;
     public Text itemName;
@@ -16,25 +14,21 @@ public class ISlotUI : MonoBehaviour, IDropHandler
     public Text itemQuantity;
     public Image icon;
 
+    public ISlot slot;
+    public int index;
+
     private IInventory inv;
-    private IInventoryUI invUI;
+
     private void Start()
     {
+        slot = new ISlot(null, 0);
         inv = FindObjectOfType<IInventory>();
-        invUI = FindObjectOfType<IInventoryUI>();
     }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
-        Debug.Log("Drop");
-        
         if (slot.quantity == 0 || slot.obj.name != inv.selectedSlot.obj.name)
             inv.CambiarLugar(index);
-
-        else if (slot.obj.name == inv.selectedSlot.obj.name && slot.obj.stackable > inv.selectedSlot.quantity + slot.quantity)
-        {
-            //agregar cantidad al slot y borrar el slot seleccionado
-        }
     }
 
 }

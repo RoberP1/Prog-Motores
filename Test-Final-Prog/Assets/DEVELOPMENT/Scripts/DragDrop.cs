@@ -45,10 +45,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
         inv.selectedSlot = null;
     }
 
-    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
-    {
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData) =>
         parent = transform.parent;
-    }
+
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {

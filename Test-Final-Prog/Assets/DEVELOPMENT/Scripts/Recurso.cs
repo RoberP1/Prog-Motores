@@ -23,8 +23,6 @@ public class Recurso : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        //print("trigger");
-        //print(other.gameObject.name);
         if (other.gameObject.name == "AttackArea" )//cambiar a trytogetcomponent<Iobject>(out Iobject arma) y si arma.isarma
         {
             print("pego");

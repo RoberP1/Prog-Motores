@@ -52,9 +52,7 @@ public class IInventory : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha5)) PonerEnMano(4);
 
             if (Input.GetMouseButtonDown(1) && ObjInMano != null &&ObjInMano.activeSelf && ObjInMano.GetComponent<IObject>().uso != null)
-            {
                 Usos(ObjInMano.GetComponent<IObject>().uso);
-            }
         }
     }
 
@@ -62,7 +60,6 @@ public class IInventory : MonoBehaviour
     {
         if (hotbar[i].quantity != 0)
         {
-            //si tiene ponerlo en la mano
             ObjInMano?.SetActive(false);
             ObjInMano = hotbar[i].prefab;
             invUI.hotbar[slotinmano].GetComponent<CanvasGroup>().alpha = 0.8f;
@@ -185,8 +182,8 @@ public class IInventory : MonoBehaviour
         {
             case "naranja":
                 sacaruno(slotinmano);
-                status.Comer(20);
-                status.Beber(10);
+                status.Comer(15);
+                status.Beber(15);
                 break;
             case "manzana":
                 sacaruno(slotinmano);

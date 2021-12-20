@@ -32,11 +32,8 @@ public class IObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!inMano && other.TryGetComponent<IInventory>(out IInventory inventario))
-        {
-            if (inventario.Add(this))  Destroy(gameObject);
-            else print("toco pero no se agrego");
-        }
+        if(!inMano && other.TryGetComponent<IInventory>(out IInventory inventario) && inventario.Add(this))
+            Destroy(gameObject);
     }
 }
 

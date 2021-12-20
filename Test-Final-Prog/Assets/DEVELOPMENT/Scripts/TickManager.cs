@@ -18,10 +18,8 @@ public class TickManager : MonoBehaviour
     public int tick;
     private float tickTimer;
 
-    void Awake()
-    {
-        tick = 0;
-    }
+    void Start() => tick = 0;
+
 
    
     void Update()
