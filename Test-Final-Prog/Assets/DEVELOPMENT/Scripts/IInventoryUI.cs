@@ -18,6 +18,7 @@ public class IInventoryUI : MonoBehaviour
         {
             inv[i].index = i;
         }
+        hotbar[0].GetComponent<CanvasGroup>().alpha = 1f;
     }
 
     public void UpdateInv()

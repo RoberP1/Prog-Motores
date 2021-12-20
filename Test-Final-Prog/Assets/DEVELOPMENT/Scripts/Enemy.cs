@@ -28,7 +28,6 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<IStatus>();
         target = player.transform;
         CanMakeDamage = true;
-
     }
 
     // Update is called once per frame
@@ -36,12 +35,6 @@ public class Enemy : MonoBehaviour
     {
         if (alive && Vector3.Distance(transform.position, target.position) < distancia) agent.SetDestination(target.position);
         else agent.SetDestination(transform.position);
-
-        if (Vector3.Distance(transform.position, target.position) <= 2.1f && CanMakeDamage && alive) //esto se hace mas eficiente con un trigger
-        {
-            player.Curar(-20);
-            StartCoroutine(DelayDaño(1.5f));
-        }
     }
     public void Damage(float damage)
     {
@@ -53,7 +46,6 @@ public class Enemy : MonoBehaviour
             alive = false;
             Destroy(gameObject);
         }
-
     }
     public IEnumerator DelayDaño(float delay)
     {
@@ -70,6 +62,14 @@ public class Enemy : MonoBehaviour
         } else if (obj != null && obj.inMano)
         {
             Damage(obj.damage);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && CanMakeDamage && alive)
+        {
+            player.Curar(-20);
+            StartCoroutine(DelayDaño(1.5f));
         }
     }
 
