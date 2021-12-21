@@ -60,7 +60,7 @@ public class IStatus : MonoBehaviour
             manager.Perder();
         }
         if (health < healthMax && hunger > 70 && thirst > 70) health += healthMax / healthTick;
-        if (hunger == 0 || thirst == 0) health -= healthMax / (healthTick * 3);
+        if (hunger <= 0 || thirst <= 0) health -= healthMax / (healthTick * 3);
         if(healthTick<0) health += healthMax / healthTick;
     }
     private void UpdateUI()

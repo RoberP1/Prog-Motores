@@ -17,10 +17,10 @@ public class IInventory : MonoBehaviour
     [SerializeField]private Transform camerarotation;
     [SerializeField]private GameObject mapa;
     [SerializeField]private AudioClip[] sonidos;
-    [SerializeField] private AudioSource reproductor;
+    [SerializeField]private AudioSource reproductor;
 
     public GameObject ObjInMano;
-    private IInventoryUI invUI;
+    public IInventoryUI invUI;
     private IStatus status;
     private Manager manager;
     private ICrafting craft;
@@ -38,7 +38,7 @@ public class IInventory : MonoBehaviour
             inventory[i] = new ISlot(null,0);
         }
         data = FindObjectOfType<IData>();
-        //data.LoadJSON();
+
         UIinv.SetActive(false);
         UpdateHotbar();
         invUI.UpdateInv();
@@ -111,7 +111,7 @@ public class IInventory : MonoBehaviour
     }
 
     //los primeros 5 slots del inventario son de la hotbar
-    void UpdateHotbar()
+    public void UpdateHotbar()
     {
         for (int i = 0; i < hotbar.Length; i++)  hotbar[i] = inventory[i];
         PonerEnMano(slotinmano);
@@ -329,6 +329,8 @@ public class IQuerry
         this.quantity = quantity;
     }
 }
+
+
 [System.Serializable]
 public class ISlot
 {

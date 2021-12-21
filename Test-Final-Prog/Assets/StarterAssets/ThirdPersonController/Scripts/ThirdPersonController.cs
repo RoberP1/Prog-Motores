@@ -426,13 +426,21 @@ namespace StarterAssets
 		}
 		public void pasoI()
         {
-			reproductor.clip = sonidos[0];
-			reproductor.Play();
+            if (_input.move != Vector2.zero)
+            {
+				reproductor.clip = sonidos[0];
+				reproductor.Play();
+			}
+			
 		}	
 		public void pasoD()
         {
-			reproductor.clip = sonidos[1];
-			reproductor.Play();
+			if (_input.move != Vector2.zero)
+            {
+				reproductor.clip = sonidos[1];
+				reproductor.Play();
+			}
+				
 		}
 	}
 }

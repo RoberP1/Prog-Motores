@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Tent : MonoBehaviour
 {
-    private IData data;
+    private TickManager tickManager;
+    private DayNight DayNight;
     void Start()
     {
-        data = FindObjectOfType<IData>();
+        tickManager = FindObjectOfType<TickManager>();
+        DayNight = FindObjectOfType<DayNight>();
     }
 
     // Update is called once per frame
@@ -17,9 +19,10 @@ public class Tent : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        
+        if (!DayNight.day && other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
-            data.SaveJSON();
+            tickManager.tick += 15000;
         }
     }
 }
