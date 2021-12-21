@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3814089985416593339}
   - component: {fileID: -8234380481666575936}
   - component: {fileID: -1122469965858885293}
+  - component: {fileID: -1202036385886534624}
   m_Layer: 0
   m_Name: Canteen_Bottle_01
   m_TagString: Untagged
@@ -145,15 +146,32 @@ MonoBehaviour:
   description: 
   prefab: {fileID: 119352}
   stackable: 1
+  recogible: 1
   inMano: 0
   posicionMano: {x: 0.034, y: -0.161, z: 0.07}
   rotacionMano: {x: -0.55018646, y: 0.49198872, z: -0.40117863, w: 0.54249215}
   IsArma: 0
   AttackArea: {fileID: 0}
+  damage: 0
   icon: {fileID: 8474942650493876284}
-  iscrafteable: 0
-  crafteo: []
   uso: cantimplora
+--- !u!114 &-1202036385886534624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57b159e75a317c4ca5ef2d2cc083240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  result: {fileID: -1122469965858885293}
+  components:
+  - name: Botella de Agua
+    quantity: 2
+    icon: {fileID: 21300000, guid: 9ab1e1522b0a93c47ae8c7fc84412065, type: 3}
 --- !u!1 &1091930879500963297
 GameObject:
   m_ObjectHideFlags: 0

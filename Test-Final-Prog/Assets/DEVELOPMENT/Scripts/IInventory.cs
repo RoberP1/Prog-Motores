@@ -14,10 +14,16 @@ public class IInventory : MonoBehaviour
     public int slotinmano;
 
     [SerializeField]private Transform mano;
-    private GameObject ObjInMano;
+    [SerializeField]private Transform camerarotation;
+    [SerializeField]private GameObject mapa;
+    [SerializeField]private AudioClip[] sonidos;
+    [SerializeField] private AudioSource reproductor;
+
+    public GameObject ObjInMano;
     private IInventoryUI invUI;
     private IStatus status;
     private Manager manager;
+    private ICrafting craft;
     void Start()
     {
         for (int i = 0; i < 15; i++)
@@ -28,6 +34,8 @@ public class IInventory : MonoBehaviour
         invUI = FindObjectOfType<IInventoryUI>();
         status = GetComponent<IStatus>();
         manager = FindObjectOfType<Manager>();
+        craft = FindObjectOfType<ICrafting>();
+        mapa.SetActive(false);
     }
 
    
@@ -35,9 +43,11 @@ public class IInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I) && !manager.menu.activeSelf)
         {
+            reproductor.clip = sonidos[0];
+            reproductor.Play();
             UIinv.SetActive(!UIinv.activeSelf);
-            Time.timeScale = (UIinv.activeSelf) ? 0 : 1;
-            Cursor.lockState =  (UIinv.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
+            Time.timeScale = (UIinv.activeSelf || craft.craftMenu.activeSelf) ? 0 : 1;
+            Cursor.lockState =  (UIinv.activeSelf || craft.craftMenu.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
         }
         if (!UIinv.activeSelf)
         {
@@ -60,7 +70,7 @@ public class IInventory : MonoBehaviour
     {
         if (hotbar[i].quantity != 0)
         {
-            ObjInMano?.SetActive(false);
+            if(ObjInMano != null)ObjInMano.SetActive(false);
             ObjInMano = hotbar[i].prefab;
             invUI.hotbar[slotinmano].GetComponent<CanvasGroup>().alpha = 0.8f;
             slotinmano = i;
@@ -99,7 +109,6 @@ public class IInventory : MonoBehaviour
         PonerEnMano(slotinmano);
         
     }
-
     int BuscarVacio() //busca el primer slot vacio, si no encuentra devuelve -1
     {
         for (int i = 0; i < inventory.Length; i++)
@@ -129,14 +138,19 @@ public class IInventory : MonoBehaviour
             if (i != -1)
             {
                 inventory[i] = new ISlot(item, 1);
-                inventory[i].prefab = Instantiate(inventory[i].obj.prefab,mano.position, mano.rotation,mano);
+                Transform padre = inventory[i].obj.recogible ? mano : camerarotation;
+                inventory[i].prefab = Instantiate(inventory[i].obj.prefab,padre.position, padre.rotation,padre);
                 inventory[i].prefab.SetActive(false);
                 agregado = true;
             }
         }
         UpdateHotbar();
         invUI.UpdateInv();
-
+        if(agregado)
+        {
+            reproductor.clip = sonidos[3];
+            reproductor.Play();
+        }
         return agregado;
     }
     public int BuscarSlot(ISlot slot)
@@ -147,7 +161,23 @@ public class IInventory : MonoBehaviour
         }
         Debug.Log("no se encontro el slot");
         return -1;
-    } 
+    }
+    public bool Check(string name, int quantity)
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i].quantity >= quantity && inventory[i].obj.name == name) return true;
+        }
+        return false;
+    }
+    public int FindID(string name, int quantity)
+    {
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (inventory[i].quantity >= quantity && inventory[i].obj.name == name) return i;
+        }
+        return -1;
+    }
     public void CambiarLugar( int dest)
     {
         ISlot tempslot = (inventory[dest].quantity == 0) ? new ISlot(null, 0) : inventory[dest];
@@ -162,12 +192,21 @@ public class IInventory : MonoBehaviour
         int i = BuscarSlot(selectedSlot);
         for (int j = 0; j < selectedSlot.quantity; j++)
         {
-            Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(2,j/2,0), selectedSlot.prefab.transform.rotation).SetActive(true);
+            GameObject droped = Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(2,j/2,0), selectedSlot.prefab.transform.rotation);
+            droped.SetActive(true);
+            droped.GetComponent<Rigidbody>().isKinematic = false;
+            droped.GetComponent<IObject>().inMano = false;
         }
         Destroy(inventory[i].prefab);
         inventory[i] = new ISlot(null, 0);
         UpdateHotbar();
         invUI.UpdateInv();
+    }
+    public void DropObject(IObject obj)
+    {
+        GameObject droped = Instantiate(obj.prefab, transform.position + new Vector3(2, 1, 0), transform.rotation);
+        droped.GetComponent<Rigidbody>().isKinematic = false;
+        droped.GetComponent<IObject>().inMano = false;
     }
     public void sacaruno(int i) 
     { 
@@ -175,22 +214,55 @@ public class IInventory : MonoBehaviour
         UpdateHotbar();
         invUI.UpdateInv();
     }
-
+    public void RemoveAll(IQuerry[] querries)
+    {
+        foreach (IQuerry querry in querries)
+        {
+            int j = FindID(querry.name, querry.quantity);
+            for (int i = 0; i < querry.quantity; i++)
+            {
+                sacaruno(j);
+            }
+        }
+    }
+    public bool QuerryRemove(IQuerry[] querries)
+    {
+        foreach(IQuerry querry in querries)
+        {
+            if (!Check(querry.name, querry.quantity)) return false;
+        }
+        RemoveAll(querries);
+        return true;
+    }
+    public bool QuerryCheck(IQuerry[] querries)
+    {
+        foreach (IQuerry querry in querries)
+        {
+            if (!Check(querry.name, querry.quantity)) return false;
+        }
+        return true;
+    }
     public void Usos(string uso)
     {
         switch (uso)
         {
             case "naranja":
+                reproductor.clip = sonidos[1];
+                reproductor.Play();
                 sacaruno(slotinmano);
                 status.Comer(15);
                 status.Beber(15);
                 break;
             case "manzana":
+                reproductor.clip = sonidos[1];
+                reproductor.Play();
                 sacaruno(slotinmano);
                 status.Comer(20);
                 status.Beber(10);
                 break;
             case "pan":
+                reproductor.clip = sonidos[1];
+                reproductor.Play();
                 sacaruno(slotinmano);
                 status.Comer(30);
                 break;
@@ -199,16 +271,31 @@ public class IInventory : MonoBehaviour
                 status.Curar(100);
                 break;
             case "meat":
+                reproductor.clip = sonidos[1];
+                reproductor.Play();
                 sacaruno(slotinmano);
                 status.Comer(50);
                 break;
             case "cantimplora":
+                reproductor.clip = sonidos[2];
+                reproductor.Play();
                 sacaruno(slotinmano);
                 status.Beber(100);
                 break;
             case "botella":
+                reproductor.clip = sonidos[2];
+                reproductor.Play();
                 sacaruno(slotinmano);
                 status.Beber(40);
+                break;
+            case "mapa":
+                mapa.SetActive(!mapa.activeSelf);
+                break;
+            case "build":
+                ObjInMano.transform.SetParent(null);
+                ObjInMano.GetComponent<Rigidbody>().isKinematic = false;
+                ObjInMano = null;
+                sacaruno(slotinmano);
                 break;
             default:
                 break;
@@ -216,3 +303,33 @@ public class IInventory : MonoBehaviour
     }
 
 }
+[System.Serializable]
+public class IQuerry
+{
+    public string name;
+    public int quantity;
+    public Sprite icon;
+
+    public IQuerry(string name, int quantity)
+    {
+        this.name = name;
+        this.quantity = quantity;
+    }
+}
+[System.Serializable]
+public class ISlot
+{
+    public IObject obj { set; get; }
+    public int quantity { set; get; }
+
+    public GameObject prefab;
+
+    public ISlot(IObject item, int cantidad)
+    {
+        obj = item;
+        quantity = cantidad;
+    }
+
+}
+
+

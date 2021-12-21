@@ -5,6 +5,8 @@ using UnityEngine;
 public class Collecionables : MonoBehaviour
 {
     private Manager manager;
+
+
     void Start() => manager = FindObjectOfType<Manager>();
 
 
@@ -12,7 +14,7 @@ public class Collecionables : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("encontro player");
+
             manager.EncontrarCol();
             Destroy(gameObject);
         }

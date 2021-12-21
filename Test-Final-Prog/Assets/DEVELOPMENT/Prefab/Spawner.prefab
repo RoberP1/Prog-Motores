@@ -33,6 +33,7 @@ Transform:
   - {fileID: 2886032643173442551}
   - {fileID: 6296884727808454560}
   - {fileID: 6729047224597390227}
+  - {fileID: 3044301265853268262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -313,6 +314,84 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 465330, guid: 694a56bce57fe5f4e9742040422886d0, type: 3}
   m_PrefabInstance: {fileID: 6729047224597330465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7615482799146991885
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1063113455413442033}
+    m_Modifications:
+    - target: {fileID: 4868433661130031146, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_Name
+      value: Prism
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031148, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031149, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868433661130031150, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a71f550886c454a4b944b21c9b964d86, type: 2}
+    - target: {fileID: 4868433661130031151, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+--- !u!4 &3044301265853268262 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4868433661130031147, guid: aa529ef6426fb96499cd7df49f6c38f9, type: 3}
+  m_PrefabInstance: {fileID: 7615482799146991885}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7858815822906390335
 PrefabInstance:

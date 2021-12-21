@@ -65,6 +65,9 @@ namespace StarterAssets
 		public BoxCollider ManoCollider;
 		public BoxCollider ArmaCollider;
 
+		[Header("sound")]
+		public AudioSource reproductor;
+		public AudioClip[] sonidos;
 		// cinemachine
 		private float _cinemachineTargetYaw;
 		private float _cinemachineTargetPitch;
@@ -420,6 +423,16 @@ namespace StarterAssets
 		{
 			ManoCollider.enabled = false;
 			if (ArmaCollider != null) ArmaCollider.enabled = false;
+		}
+		public void pasoI()
+        {
+			reproductor.clip = sonidos[0];
+			reproductor.Play();
+		}	
+		public void pasoD()
+        {
+			reproductor.clip = sonidos[1];
+			reproductor.Play();
 		}
 	}
 }

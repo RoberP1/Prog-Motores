@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class IStatus : MonoBehaviour
 {
+
     private StarterAssetsInputs _input;
     private Manager manager;
     private bool alive;
@@ -19,7 +20,8 @@ public class IStatus : MonoBehaviour
     public float hungerTickWalk, thirstTickWalk;
     public float hungerTickSprint, thirstTickSprint;
     public float healthStatusTick,hungerStatusTick, thirstStatusTick = 0;
-
+    public AudioSource reproductor;
+    public AudioClip sonido;
     void Start()
     {
         alive = true;
@@ -59,6 +61,7 @@ public class IStatus : MonoBehaviour
         }
         if (health < healthMax && hunger > 70 && thirst > 70) health += healthMax / healthTick;
         if (hunger == 0 || thirst == 0) health -= healthMax / (healthTick * 3);
+        if(healthTick<0) health += healthMax / healthTick;
     }
     private void UpdateUI()
     {
@@ -67,7 +70,15 @@ public class IStatus : MonoBehaviour
         Sed.value = thirst;
     }
     public void RecibirDamage(float d) => health -= d;
-    public void Curar(float h) => health += h;
+    public void Curar(float h)
+    {
+        if (h<0)
+        {
+            reproductor.clip = sonido;
+            reproductor.Play();
+        }
+        health += h;
+    }
     public void Comer(float c) => hunger += c;
     public void Beber(float b) => thirst += b;
 

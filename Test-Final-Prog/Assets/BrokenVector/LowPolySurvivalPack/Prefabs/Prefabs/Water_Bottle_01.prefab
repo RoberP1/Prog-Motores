@@ -146,14 +146,14 @@ MonoBehaviour:
   description: 
   prefab: {fileID: 169412}
   stackable: 10
+  recogible: 1
   inMano: 0
   posicionMano: {x: 0.056, y: -0.109, z: 0.143}
   rotacionMano: {x: -0.63829535, y: 0.06198051, z: 0.06578434, w: 0.76446706}
   IsArma: 0
   AttackArea: {fileID: 0}
+  damage: 0
   icon: {fileID: 6953101664765683590}
-  iscrafteable: 0
-  crafteo: []
   uso: botella
 --- !u!1 &4568192786765593049
 GameObject:

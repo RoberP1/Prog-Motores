@@ -6,6 +6,7 @@ public class DamageTrigger : MonoBehaviour
 {
     private IStatus player;
     private bool CanMakeDamage;
+    public float damage;
     void Start()
     {
         player = FindObjectOfType<IStatus>();
@@ -17,22 +18,18 @@ public class DamageTrigger : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
-    {
 
-        if (other.CompareTag("Player"))
-        {
-            if (CanMakeDamage)
-            {
-                player.Curar(-25);
-                StartCoroutine(DelayDaño(1.5f));
-            }
-        }
-    }
     public IEnumerator DelayDaño(float delay)
     {
-        CanMakeDamage = false;
         yield return new WaitForSeconds(delay);
-        CanMakeDamage = true;
+        player.estado(damage, 0, 0);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) player.estado(-damage, 0, 0);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")) StartCoroutine(DelayDaño(3));
     }
 }

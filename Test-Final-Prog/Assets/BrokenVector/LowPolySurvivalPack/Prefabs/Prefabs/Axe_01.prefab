@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -7201579368866512821}
   - component: {fileID: 7915328955516468904}
   - component: {fileID: -2001249251358414994}
+  - component: {fileID: 2895477182693816976}
   m_Layer: 0
   m_Name: Axe_01
   m_TagString: Untagged
@@ -147,6 +148,7 @@ MonoBehaviour:
   description: 
   prefab: {fileID: 165366}
   stackable: 1
+  recogible: 1
   inMano: 0
   posicionMano: {x: 0.021, y: -0.075, z: -0.018}
   rotacionMano: {x: 0.059005726, y: -0.061064664, z: -0.75370264, w: 0.6517068}
@@ -154,9 +156,27 @@ MonoBehaviour:
   AttackArea: {fileID: 4366669296708673718}
   damage: 50
   icon: {fileID: 2041369929654738606}
-  iscrafteable: 0
-  crafteo: []
   uso: 
+--- !u!114 &2895477182693816976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57b159e75a317c4ca5ef2d2cc083240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  result: {fileID: -2001249251358414994}
+  components:
+  - name: Palo
+    quantity: 2
+    icon: {fileID: 21300000, guid: ced59d07df968a342a77aad3996476c4, type: 3}
+  - name: hierro
+    quantity: 2
+    icon: {fileID: 21300000, guid: 20c08caa56320e04ab6fa4fa20982969, type: 3}
 --- !u!1 &2429720472969521735
 GameObject:
   m_ObjectHideFlags: 0

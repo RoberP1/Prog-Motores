@@ -8,11 +8,12 @@ TagManager:
   - golpemano
   - golpearma
   - mainCanvas
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ignore maincamera
   - Water
   - UI
   - recogible

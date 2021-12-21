@@ -14,11 +14,14 @@ public class Enemy : MonoBehaviour
     private IStatus player;
     private bool alive = true;
     public bool CanMakeDamage;
+    public bool rugir;
 
     [SerializeField] private Slider Vida;
     [SerializeField] private float distancia;
 
-    
+    public AudioSource reproductor;
+    public AudioClip sonido;
+    public AudioClip rugido;
 
     void Start()
     {
@@ -28,19 +31,28 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<IStatus>();
         target = player.transform;
         CanMakeDamage = true;
+        rugir = true;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (alive && Vector3.Distance(transform.position, target.position) < distancia) agent.SetDestination(target.position);
+        if (alive && Vector3.Distance(transform.position, target.position) < distancia)
+        { 
+            agent.SetDestination(target.position);
+            if (rugir) StartCoroutine(Rugir(5));
+
+
+        }
         else agent.SetDestination(transform.position);
     }
     public void Damage(float damage)
     {
         health -= damage;
         Vida.value = health;
-
+        reproductor.clip = sonido;
+        reproductor.Play();
         if (alive && health <= 0)
         {
             alive = false;
@@ -52,6 +64,14 @@ public class Enemy : MonoBehaviour
         CanMakeDamage = false;
         yield return new WaitForSeconds(delay);
         CanMakeDamage = true;
+    }
+    public IEnumerator Rugir(float delay)
+    {
+        rugir = false;
+        reproductor.clip = rugido;
+        reproductor.Play();
+        yield return new WaitForSeconds(delay);
+        rugir = true;
     }
     private void OnTriggerEnter(Collider other)
     {

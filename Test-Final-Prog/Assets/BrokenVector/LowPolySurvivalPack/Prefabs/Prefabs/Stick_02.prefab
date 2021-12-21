@@ -146,15 +146,14 @@ MonoBehaviour:
   description: 
   prefab: {fileID: 170050}
   stackable: 10
+  recogible: 1
   inMano: 0
   posicionMano: {x: 0.053, y: -0.143, z: 0.344}
   rotacionMano: {x: 0.05932794, y: 0.045349386, z: -0.052129224, w: 0.9958444}
   IsArma: 1
   AttackArea: {fileID: 945131384615232643}
-  damage: 30
+  damage: 25
   icon: {fileID: 7750200920599388911}
-  iscrafteable: 0
-  crafteo: []
   uso: 
 --- !u!1 &1085534205841445850
 GameObject:

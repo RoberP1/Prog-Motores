@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4232504390000076971}
   - component: {fileID: -2714417737185191166}
   - component: {fileID: 1229064001508224479}
+  - component: {fileID: 9173279120384190657}
   m_Layer: 0
   m_Name: Hammer_01
   m_TagString: Untagged
@@ -147,6 +148,7 @@ MonoBehaviour:
   description: 
   prefab: {fileID: 195628}
   stackable: 1
+  recogible: 1
   inMano: 0
   posicionMano: {x: 0.041, y: -0.097, z: -0.007}
   rotacionMano: {x: -0.04662818, y: 0.13112828, z: -0.6999002, w: 0.70055044}
@@ -154,9 +156,27 @@ MonoBehaviour:
   AttackArea: {fileID: 1352290695269208881}
   damage: 40
   icon: {fileID: 3249045759369256616}
-  iscrafteable: 0
-  crafteo: []
   uso: 
+--- !u!114 &9173279120384190657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57b159e75a317c4ca5ef2d2cc083240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  result: {fileID: 1229064001508224479}
+  components:
+  - name: Palo
+    quantity: 1
+    icon: {fileID: 21300000, guid: ced59d07df968a342a77aad3996476c4, type: 3}
+  - name: hierro
+    quantity: 1
+    icon: {fileID: 21300000, guid: 20c08caa56320e04ab6fa4fa20982969, type: 3}
 --- !u!1 &2420621198091040865
 GameObject:
   m_ObjectHideFlags: 0

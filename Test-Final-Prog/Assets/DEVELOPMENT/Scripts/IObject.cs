@@ -9,6 +9,7 @@ public class IObject : MonoBehaviour
     public string description;
     public GameObject prefab;
     public int stackable = 1;
+    public bool recogible;
 
     [Header("Posicion en la mano")]
     [Tooltip("Puede estar en la mano o no")]
@@ -25,44 +26,14 @@ public class IObject : MonoBehaviour
     [Header("inventario")]
     public Image icon;
 
-    [Header("Crafteo")]
-    public bool iscrafteable = false;
-    public List<IQuerry> crafteo;
-
     public string uso;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!inMano && other.TryGetComponent<IInventory>(out IInventory inventario) && inventario.Add(this))
+        if(recogible && !inMano && other.TryGetComponent<IInventory>(out IInventory inventario) && inventario.Add(this))
             Destroy(gameObject);
     }
 }
 
 
-[System.Serializable]
-public class IQuerry
-{
-    public string name;
-    public int quantity;
 
-    public IQuerry(string name, int quantity)
-    {
-        this.name = name;
-        this.quantity = quantity;
-    }
-}
-[System.Serializable]
-public class ISlot
-{
-    public IObject obj { set; get; }
-    public int quantity { set; get; }
-
-    public GameObject prefab;
-
-    public ISlot(IObject item, int cantidad)
-    {
-        obj = item;
-        quantity = cantidad;
-    }
-  
-}

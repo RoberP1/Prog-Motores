@@ -10,6 +10,8 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject win;
     [SerializeField] private GameObject lose;
     [SerializeField] private GameObject pause;
+    public AudioSource reproductor;
+    public AudioClip sonido;
     public int coltotales = 0;
     public int colEncontrados = 0;
     void Start()
@@ -52,6 +54,8 @@ public class Manager : MonoBehaviour
     }
     public void EncontrarCol()
     {
+        reproductor.clip = sonido;
+        reproductor.Play();
         colEncontrados++;
         colleccionables.text = colEncontrados + "/" + coltotales;
         if (colEncontrados == coltotales) Ganar();

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3000113613294525449}
   - component: {fileID: 2829866698859996818}
   - component: {fileID: 2720252470112940447}
+  - component: {fileID: 2970537290856217689}
   m_Layer: 0
   m_Name: Pickaxe_01
   m_TagString: Untagged
@@ -147,16 +148,35 @@ MonoBehaviour:
   description: 
   prefab: {fileID: 180016}
   stackable: 1
+  recogible: 1
   inMano: 0
   posicionMano: {x: 0.005422753, y: -0.09668897, z: 0.007241067}
   rotacionMano: {x: 0.063209616, y: 0.0020653012, z: 0.7361287, w: 0.67388046}
   IsArma: 1
   AttackArea: {fileID: 135004408767152150}
-  damage: 45
+  damage: 40
   icon: {fileID: 1840987032995344637}
-  iscrafteable: 0
-  crafteo: []
   uso: 
+--- !u!114 &2970537290856217689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57b159e75a317c4ca5ef2d2cc083240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  result: {fileID: 2720252470112940447}
+  components:
+  - name: Palo
+    quantity: 2
+    icon: {fileID: 21300000, guid: ced59d07df968a342a77aad3996476c4, type: 3}
+  - name: hierro
+    quantity: 2
+    icon: {fileID: 21300000, guid: 20c08caa56320e04ab6fa4fa20982969, type: 3}
 --- !u!1 &4250710764187982151
 GameObject:
   m_ObjectHideFlags: 0
