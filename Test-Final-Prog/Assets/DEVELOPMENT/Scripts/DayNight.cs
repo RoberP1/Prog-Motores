@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DayNight : MonoBehaviour
 {
-    private bool day = true;
+    public bool day = true;
     public GameObject yo;
     public int dayDuration;
     public Material daymat;

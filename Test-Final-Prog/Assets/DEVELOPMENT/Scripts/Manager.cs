@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,17 +15,38 @@ public class Manager : MonoBehaviour
     public AudioClip sonido;
     public int coltotales = 0;
     public int colEncontrados = 0;
+    public GameObject enemy;
+    public Transform[] spawners;
+    private DayNight daynight;
+    private Transform player;
+    private bool Canspawn;
     void Start()
     {
+        Canspawn = true;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         colleccionables.text = colEncontrados + "/" + coltotales;
         menu.SetActive(false);
         win.SetActive(false);
         lose.SetActive(false);
         pause.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-
+        daynight = FindObjectOfType<DayNight>();
+        TickManager.OnTick += Spawns;
     }
 
+    private void Spawns(object sender, TickManager.OnTickEventArgs e)
+    {
+        if (!daynight.day && e.tick % 2000 == 0)
+        {
+            foreach (Transform spawner in spawners)
+            {
+                if (Vector3.Distance(spawner.position,player.position) < 50 && UnityEngine.Random.Range(0, 1) == 0)
+                {
+                    Instantiate(enemy, spawner.position, spawner.rotation);
+                }
+            }
+        }
+    }
 
     void Update()
     {
