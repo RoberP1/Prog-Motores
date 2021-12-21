@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5715173345022061481}
   - component: {fileID: 4403168968091285788}
   - component: {fileID: -7824335149513808118}
+  - component: {fileID: 407636680618019008}
+  - component: {fileID: 2765525085129924881}
   m_Layer: 0
   m_Name: Tent_01
   m_TagString: Untagged
@@ -162,6 +164,31 @@ MonoBehaviour:
   - name: Palo
     quantity: 5
     icon: {fileID: 21300000, guid: ced59d07df968a342a77aad3996476c4, type: 3}
+--- !u!65 &407636680618019008
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.73, y: 4.47, z: 8.45}
+  m_Center: {x: 0.0000005364418, y: 3.3, z: -0.0029929876}
+--- !u!114 &2765525085129924881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94a3e8fc052da9b47858a7f5a1e4ff3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3280048871054652797
 GameObject:
   m_ObjectHideFlags: 0

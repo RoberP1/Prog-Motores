@@ -24,18 +24,26 @@ public class IInventory : MonoBehaviour
     private IStatus status;
     private Manager manager;
     private ICrafting craft;
+    private IData data;
+    
     void Start()
     {
-        for (int i = 0; i < 15; i++)
-        {
-            inventory[i] = new ISlot(null,0);
-        }
-        UIinv.SetActive(false);
         invUI = FindObjectOfType<IInventoryUI>();
         status = GetComponent<IStatus>();
         manager = FindObjectOfType<Manager>();
         craft = FindObjectOfType<ICrafting>();
         mapa.SetActive(false);
+        for (int i = 0; i < 15; i++)
+        {
+            inventory[i] = new ISlot(null,0);
+        }
+        data = FindObjectOfType<IData>();
+        data.LoadJSON();
+        UIinv.SetActive(false);
+        UpdateHotbar();
+        invUI.UpdateInv();
+
+
     }
 
    
@@ -94,7 +102,7 @@ public class IInventory : MonoBehaviour
         }
         else
         {
-            ObjInMano?.SetActive(false);
+            if(ObjInMano!=null) ObjInMano.SetActive(false);
             GetComponent<ThirdPersonController>().ArmaEnMano = false;
             invUI.hotbar[slotinmano].GetComponent<CanvasGroup>().alpha = 0.8f;
             slotinmano = i;
