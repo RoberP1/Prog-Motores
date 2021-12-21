@@ -38,7 +38,7 @@ public class IInventory : MonoBehaviour
             inventory[i] = new ISlot(null,0);
         }
         data = FindObjectOfType<IData>();
-        data.LoadJSON();
+        //data.LoadJSON();
         UIinv.SetActive(false);
         UpdateHotbar();
         invUI.UpdateInv();
@@ -200,13 +200,18 @@ public class IInventory : MonoBehaviour
         int i = BuscarSlot(selectedSlot);
         for (int j = 0; j < selectedSlot.quantity; j++)
         {
-            GameObject droped = Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(2,j/2,0), selectedSlot.prefab.transform.rotation);
+            if (ObjInMano.TryGetComponent<BoxCollider>(out BoxCollider col)) col.enabled = true;
+            GameObject droped = Instantiate(selectedSlot.prefab, selectedSlot.prefab.transform.position + new Vector3(2,j/2+1,0), selectedSlot.prefab.transform.rotation);
             droped.SetActive(true);
             droped.GetComponent<Rigidbody>().isKinematic = false;
             droped.GetComponent<IObject>().inMano = false;
         }
-        Destroy(inventory[i].prefab);
-        inventory[i] = new ISlot(null, 0);
+        if (i > -1)
+        {
+            Destroy(inventory[i].prefab);
+            inventory[i] = new ISlot(null, 0);
+        }
+        selectedSlot = null;
         UpdateHotbar();
         invUI.UpdateInv();
     }
