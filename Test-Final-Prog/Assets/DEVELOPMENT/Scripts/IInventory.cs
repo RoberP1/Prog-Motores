@@ -109,7 +109,6 @@ public class IInventory : MonoBehaviour
         }
     }
 
-    
     public void UpdateHotbar()//los primeros 5 slots del inventario son de la hotbar
     {
         for (int i = 0; i < hotbar.Length; i++)  hotbar[i] = inventory[i];
