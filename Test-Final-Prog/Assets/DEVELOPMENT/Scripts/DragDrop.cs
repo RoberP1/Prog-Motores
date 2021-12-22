@@ -11,8 +11,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
     private Transform parent;
     private ISlot SelectedSlot;
     private IInventory inv;
-    
-
 
     private void Start()
     {
@@ -44,9 +42,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IDragHandler,IBeginD
         inv.selectedSlot = null;
     }
 
-    void IPointerDownHandler.OnPointerDown(PointerEventData eventData) =>
-        parent = transform.parent;
-
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData) => parent = transform.parent;
 
     void IPointerUpHandler.OnPointerUp(PointerEventData eventData)
     {

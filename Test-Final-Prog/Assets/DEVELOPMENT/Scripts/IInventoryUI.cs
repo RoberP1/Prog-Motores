@@ -14,10 +14,7 @@ public class IInventoryUI : MonoBehaviour
     private void Start()
     {
         inventory = FindObjectOfType<IInventory>();
-        for (int i = 0; i < inv.Length; i++)
-        {
-            inv[i].index = i;
-        }
+        for (int i = 0; i < inv.Length; i++) inv[i].index = i;
         hotbar[0].GetComponent<CanvasGroup>().alpha = 1f;
     }
 

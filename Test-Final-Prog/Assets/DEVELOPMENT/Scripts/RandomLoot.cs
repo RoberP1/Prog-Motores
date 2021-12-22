@@ -6,14 +6,6 @@ public class RandomLoot : MonoBehaviour
 {
 
     public GameObject[] loottable;
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-        
-    }
     public void loot()
     {
         int random = Random.Range(1, loottable.Length);
@@ -23,13 +15,7 @@ public class RandomLoot : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IObject obj = other.GetComponentInParent<IObject>();
-        if (other.CompareTag("golpemano"))
-        {
-            loot();
-        }
-        else if (obj != null && obj.inMano)
-        {
-            loot();
-        }
+        if (other.CompareTag("golpemano")) loot();
+        else if (obj != null && obj.inMano) loot();
     }
 }

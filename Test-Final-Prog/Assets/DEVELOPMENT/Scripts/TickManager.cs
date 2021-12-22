@@ -20,8 +20,6 @@ public class TickManager : MonoBehaviour
 
     void Start() => tick = 0;
 
-
-   
     void Update()
     {
         TickTimerMax = 1 / TicksPerSec;

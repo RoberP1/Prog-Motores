@@ -7,19 +7,28 @@ public class fogata : MonoBehaviour
     private IInventory inv;
     private AudioSource sound;
     [SerializeField] private IObject carne;
+    private bool esta = false;
     void Start()
     {
         sound = GetComponent<AudioSource>();
         inv = FindObjectOfType<IInventory>();
     }
-
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) && inv.ObjInMano != null && inv.ObjInMano.GetComponent<IObject>().name == "Raw Meat")
+        if (Input.GetKeyDown(KeyCode.E) && esta && inv.ObjInMano != null && inv.ObjInMano.GetComponent<IObject>().name == "Raw Meat")
         {
             inv.sacaruno(inv.slotinmano);
             if (!inv.Add(carne)) inv.DropObject(carne);
             sound.Play();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) esta = true;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")) esta = false;
     }
 }

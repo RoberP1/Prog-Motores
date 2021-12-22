@@ -28,8 +28,9 @@ public class ICrafting : MonoBehaviour
         {
             craftMenu.SetActive(!craftMenu.activeSelf);
             Synchronize();
-            Time.timeScale = (craftMenu.activeSelf || inventory.UIinv.activeSelf) ? 0 : 1;
-            Cursor.lockState = (craftMenu.activeSelf || inventory.UIinv.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
+            manager.invopen = craftMenu.activeSelf || inventory.UIinv.activeSelf || manager.menu.activeSelf;
+            Time.timeScale = (manager.invopen) ? 0 : 1;
+            Cursor.lockState = (manager.invopen) ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
     private void Craft(IRecipe recipe)
@@ -70,7 +71,6 @@ public class ICrafting : MonoBehaviour
                 result.GetComponent<Image>().sprite = recipe.result.icon.sprite;
                 result.GetComponent<Button>().onClick.AddListener(() => Craft(recipe));
             }
-
         }
     }
 }

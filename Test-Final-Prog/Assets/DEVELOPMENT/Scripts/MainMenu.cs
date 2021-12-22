@@ -7,18 +7,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public Slider Vol;
-    public void Jugarbtn()
-    {
-        SceneManager.LoadScene("Game");
-    }
-    public void Salirbtn()
-    {
-        Application.Quit();
-    }
+    public void Jugarbtn() => SceneManager.LoadScene("Game");
+
+    public void Salirbtn() =>Application.Quit();
+
     public void ChangeVolume()
     {
         AudioListener.volume = Vol.value;
         PlayerPrefs.SetFloat("vol", Vol.value);
-
     }
 }

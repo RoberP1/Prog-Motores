@@ -19,11 +19,8 @@ public class ISlotUI : MonoBehaviour, IDropHandler
 
     private IInventory inv;
 
-    private void Start()
-    {
+    private void Start() => inv = FindObjectOfType<IInventory>();
 
-        inv = FindObjectOfType<IInventory>();
-    }
 
     void IDropHandler.OnDrop(PointerEventData eventData)
     {

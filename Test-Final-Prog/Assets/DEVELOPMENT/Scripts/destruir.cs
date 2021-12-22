@@ -5,19 +5,10 @@ using UnityEngine;
 public class destruir : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(DelayDestroy());
-    }
+    void Start() => StartCoroutine(DelayDestroy());
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public IEnumerator DelayDestroy()
     {
-        
         yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }

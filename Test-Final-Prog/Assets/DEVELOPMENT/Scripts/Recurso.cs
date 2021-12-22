@@ -21,12 +21,9 @@ public class Recurso : MonoBehaviour
         Vida -= damage;
         if (Vida <= 0)
         {
-
-            
             for (int i = 0; i < Random.Range(randomLootmin, randomLootmax); i++)
-            {
                 Instantiate(recurso, transform.position + new Vector3(Random.Range(-4, 4), 5, Random.Range(-4, 4)), transform.rotation);
-            }
+
             AudioSource dead = Instantiate(destruir).GetComponent<AudioSource>();
             dead.clip = sonidos[1];
             dead.Play();
@@ -36,28 +33,11 @@ public class Recurso : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         IObject obj = other.GetComponentInParent<IObject>();
-        if (other.CompareTag("golpemano"))
-        {
-            
-            RecibirDamage(20);
-
-
-        }
+        if (other.CompareTag("golpemano")) RecibirDamage(20);
         else if (obj != null && obj.inMano)
         {
-            if (obj.name == recolector)
-            {
-                RecibirDamage(obj.damage);
-
-
-            }
-            else
-            {
-
-                RecibirDamage(obj.damage / 2);
-                
-            }
-            
+            if (obj.name == recolector) RecibirDamage(obj.damage);
+            else RecibirDamage(obj.damage / 2);
         }
     }
 }

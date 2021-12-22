@@ -11,7 +11,6 @@ public class DayNight : MonoBehaviour
     public Material daymat;
     public Material nightmat;
 
-    
     void Awake()
     {
         yo = FindObjectOfType<DayNight>().gameObject;

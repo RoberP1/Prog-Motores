@@ -33,10 +33,7 @@ public class IInventory : MonoBehaviour
         manager = FindObjectOfType<Manager>();
         craft = FindObjectOfType<ICrafting>();
         mapa.SetActive(false);
-        for (int i = 0; i < 15; i++)
-        {
-            inventory[i] = new ISlot(null,0);
-        }
+        for (int i = 0; i < 15; i++) inventory[i] = new ISlot(null, 0);
         data = FindObjectOfType<IData>();
 
         UIinv.SetActive(false);
@@ -49,15 +46,17 @@ public class IInventory : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && !manager.menu.activeSelf)
+        if (Input.GetKeyDown(KeyCode.I) && !manager.menu.activeSelf) //abrir y cerrar inventario
         {
+
             reproductor.clip = sonidos[0];
             reproductor.Play();
             UIinv.SetActive(!UIinv.activeSelf);
-            Time.timeScale = (UIinv.activeSelf || craft.craftMenu.activeSelf) ? 0 : 1;
+            manager.invopen = UIinv.activeSelf || craft.craftMenu.activeSelf || manager.menu.activeSelf;
+            Time.timeScale = (manager.invopen) ? 0 : 1;
             Cursor.lockState =  (UIinv.activeSelf || craft.craftMenu.activeSelf) ? CursorLockMode.None : CursorLockMode.Locked;
         }
-        if (!UIinv.activeSelf)
+        if (!UIinv.activeSelf) //hotbar
         {
             if (Input.GetKeyDown(KeyCode.Alpha1)) PonerEnMano(0);
 
@@ -110,8 +109,8 @@ public class IInventory : MonoBehaviour
         }
     }
 
-    //los primeros 5 slots del inventario son de la hotbar
-    public void UpdateHotbar()
+    
+    public void UpdateHotbar()//los primeros 5 slots del inventario son de la hotbar
     {
         for (int i = 0; i < hotbar.Length; i++)  hotbar[i] = inventory[i];
         PonerEnMano(slotinmano);

@@ -529,11 +529,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanMakeDamage: 0
+  rugir: 0
   Vida: {fileID: 4744438704571796456}
   distancia: 25
   reproductor: {fileID: 6267684462770024377}
   sonido: {fileID: 8300000, guid: 8d605dcccc1127f4c93a747f3ca061bc, type: 3}
   rugido: {fileID: 8300000, guid: 0cee3a45e39b9cb4b9e9bc1e1f17f32e, type: 3}
+  recurso: {fileID: 149298, guid: d1085efa74cfd0649a5fd0074e202a54, type: 3}
+  randomLootmin: 1
+  randomLootmax: 3
 --- !u!136 &3553977102072184583
 CapsuleCollider:
   m_ObjectHideFlags: 0

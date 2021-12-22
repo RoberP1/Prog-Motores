@@ -16,12 +16,17 @@ public class Enemy : MonoBehaviour
     public bool CanMakeDamage;
     public bool rugir;
 
+
     [SerializeField] private Slider Vida;
     [SerializeField] private float distancia;
 
     public AudioSource reproductor;
     public AudioClip sonido;
     public AudioClip rugido;
+
+    public GameObject recurso;
+    public int randomLootmin;
+    public int randomLootmax;
 
     void Start()
     {
@@ -42,8 +47,6 @@ public class Enemy : MonoBehaviour
         { 
             agent.SetDestination(target.position);
             if (rugir) StartCoroutine(Rugir(5));
-
-
         }
         else agent.SetDestination(transform.position);
     }
@@ -56,6 +59,8 @@ public class Enemy : MonoBehaviour
         if (alive && health <= 0)
         {
             alive = false;
+            for (int i = 0; i < UnityEngine.Random.Range(randomLootmin, randomLootmax); i++)
+                Instantiate(recurso, transform.position + new Vector3(UnityEngine.Random.Range(-2, 2), 5, UnityEngine.Random.Range(-2, 2)), transform.rotation);
             Destroy(gameObject);
         }
     }

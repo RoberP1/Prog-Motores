@@ -12,13 +12,6 @@ public class DamageTrigger : MonoBehaviour
         player = FindObjectOfType<IStatus>();
         CanMakeDamage = true;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public IEnumerator DelayDaño(float delay)
     {
         yield return new WaitForSeconds(delay);
