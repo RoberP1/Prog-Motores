@@ -1,5 +1,5 @@
 # Prog-Motores
-Video de Youtube https://www.youtube.com/watch?v=nY47T5LhDu4
+
 
 
 CONTROLES
@@ -11,3 +11,6 @@ I para abrir inventario
 ESCAPE para menu de pausa
 Click izquierdo para atacar
 Click derecho para usar
+
+VIDEOS:
+Video de Youtube Final MotoresGraficos 1 https://www.youtube.com/watch?v=nY47T5LhDu4
